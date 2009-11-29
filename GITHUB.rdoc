@@ -1,0 +1,166 @@
+= How to Use GITHUB -- GITHUB使い方 -- 
+
+How to use github memo
+
+
+== Memo 
+
+
+  gem install nifty-generators
+reate Repos on Github 
+setupmemos
+
+
+git clone git@github.com:ganesan/setupmemos.git
+
+
+
+PC0576:coding ganesan$ git clone git@github.com:ganesan/setupmemos.gitInitialized empty Git repository in /Users/ganesan/coding/setupmemos/.git/
+Warning: No xauth data; using fake authentication data for X11 forwarding.
+warning: You appear to have cloned an empty repository.
+PC0576:coding ganesan$ ls
+Kyounoryouri_local  github_example    nokogiri
+Otsuka      kyonoryori_tmp_old  setupmemos
+SEOCheck    mechanize
+anemone     nifty-generators
+PC0576:coding ganesan$ cd setupmemos/
+PC0576:setupmemos ganesan$ ls
+PC0576:setupmemos ganesan$ touch README
+PC0576:setupmemos ganesan$ git add README 
+PC0576:setupmemos ganesan$ git commit -m 'first commit'
+[master (root-commit) a5675f6] first commit
+ 0 files changed, 0 insertions(+), 0 deletions(-)
+  create mode 100644 README
+  PC0576:setupmemos ganesan$ 
+
+
+  PC0576:setupmemos ganesan$ ls
+  README
+  PC0576:setupmemos ganesan$ vim README 
+  PC0576:setupmemos ganesan$ git status
+  # On branch master
+  # Changed but not updated:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  # modified:   README
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+
+
+
+  PC0576:setupmemos ganesan$ vim README 
+  PC0576:setupmemos ganesan$ git status
+  # On branch master
+  # Changed but not updated:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  # modified:   README
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+  PC0576:setupmemos ganesan$ git commit -am 'first commit'
+  [master 918c79e] first commit
+   1 files changed, 2 insertions(+), 0 deletions(-)
+   PC0576:setupmemos ganesan$ git status 
+   # On branch master
+   nothing to commit (working directory clean)
+
+
+   README
+   PC0576:setupmemos ganesan$ git push
+   Warning: No xauth data; using fake authentication data for X11 forwarding.
+   No refs in common and none specified; doing nothing.
+   Perhaps you should specify a branch such as 'master'.
+   error: failed to push some refs to 'git@github.com:ganesan/setupmemos.git'
+   PC0576:setupmemos ganesan$ git push origin master
+   Warning: No xauth data; using fake authentication data for X11 forwarding.
+   Counting objects: 6, done.
+   Delta compression using up to 2 threads.
+   Compressing objects: 100% (2/2), done.
+   Writing objects: 100% (6/6), 420 bytes, done.
+   Total 6 (delta 0), reused 0 (delta 0)
+   To git@github.com:ganesan/setupmemos.git
+    * [new branch]      master -> master
+     
+== Usage
+
+== Included Generators
+
+* nifty_layout: generates generic layout, stylesheet, and helper files.
+* nifty_scaffold: generates a controller and optional model/migration.
+* nifty_config: generates a config YAML file and loader.
+* nifty_authentication: generates user model with sign up and log in.
+
+
+  script/generate nifty_layout --help
+
+
+== Troubleshooting and FAQs
+
+<b>What is the difference between nifty_scaffold and built-in scaffold?</b>
+
+One of the primary differences is that nifty_scaffold allows you to choose which
+controller actions to generate.
+
+  script/generate nifty_scaffold post name:string index new edit
+
+There are a few changes to the generated code as well, such as no XML format by default.
+
+It also offers support for HAML, Shoulda, and RSpec.
+
+
+<b>I get "undefined method 'title'" error.</b>
+
+Try running nifty_layout, that will generate this helper method. Or
+you can just change the templates to whatever approach you prefer for
+setting the title.
+
+
+<b>I can't set new attributes in my model.</b>
+
+Add the attribute to the attr_accessible line in the model.
+
+
+<b>I get "undefined method 'root_url'" error.</b>
+
+Some generators default redirecting to the root_url. Set this in your
+routes.rb file like this (substituting your controller name).
+
+  map.root :controller => 'foo'
+
+
+<b>I get a missing database error.</b>
+
+Run <tt>rake db:migrate</tt>.
+
+
+<b>I get a routing error when I try to submit a form.</b>
+
+Try restarting your development server. Sometimes it doesn't detect the
+change in the routing.
+
+
+<b>The tests/specs don't work.</b>
+
+Make sure you have mocha installed and require it in your spec/test helper.
+
+  gem install mocha
+  
+  # in spec_helper.rb
+  config.mock_with :mocha
+  
+  # in test_helper.rb
+  require 'mocha'
+
+Also, make sure you're using Rails 2.1 or greater.
+
+
+== Development
+
+This project can be found on github at the following URL.
+
+http://github.com/ryanb/nifty-generators/
+
+If you wish the generators behaved differently, please consider
+forking the project and modifying to your heart's content.
